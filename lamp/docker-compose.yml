@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+
+  # PHP Service
+  php:
+    build: './php_docker/'
+    restart: unless-stopped
+    volumes:
+      - ./www/:/var/www/html/
+
+  # Apache Service
+  apache:
+    build: './apache_docker/'
+    restart: unless-stopped
+    depends_on:
+      - php
+    ports:
+      - '80:80'
+    volumes:
+      - ./www/:/var/www/html/
+
+  # MariaDB Service
+#  mariadb:
+#    image: mariadb:10.11
+#    restart: unless-stopped
+#    environment:
+#      MYSQL_ROOT_PASSWORD: your_password
+#    volumes:
+#      - mysqldata:/var/lib/mysql
+
+  # phpMyAdmin Service
+#  phpmyadmin:
+#    image: phpmyadmin/phpmyadmin:latest
+#    restart: unless-stopped
+#    ports:
+#      - 8080:80
+#    environment:
+#      PMA_HOST: mariadb
+#    depends_on:
+#      - mariadb
+
+# Volumes
+volumes:
+  mysqldata:
