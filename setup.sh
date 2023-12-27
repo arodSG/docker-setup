@@ -15,6 +15,7 @@ sudo apt-get update
 
 # Install docker and mariadb
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin mariadb-server
+sudo mysql_secure_installation
 
 # Add current user to docker group
 sudo usermod -aG docker $USER && echo "User $USER added to docker group, log out and log back in to apply changes."
