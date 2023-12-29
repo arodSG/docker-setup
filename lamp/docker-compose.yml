@@ -20,24 +20,25 @@ services:
       - ./www/:/var/www/html/
 
   # MariaDB Service
-#  mariadb:
-#    image: mariadb:10.11
-#    restart: unless-stopped
-#    environment:
-#      MYSQL_ROOT_PASSWORD: your_password
-#    volumes:
-#      - mysqldata:/var/lib/mysql
+  mariadb:
+    image: mariadb:10.11
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - mysqldata:/var/lib/mysql
 
   # phpMyAdmin Service
-#  phpmyadmin:
-#    image: phpmyadmin/phpmyadmin:latest
-#    restart: unless-stopped
-#    ports:
-#      - 8080:80
-#    environment:
-#      PMA_HOST: mariadb
-#    depends_on:
-#      - mariadb
+  phpmyadmin:
+    image: arm64v8/phpmyadmin:latest
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: mariadb
+      PMA_ABSOLUTE_URI: https://test.arodsg.com/phpmyadmin/
+    depends_on:
+      - mariadb
 
 # Volumes
 volumes:
