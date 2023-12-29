@@ -6,7 +6,7 @@ services:
     build: './php_docker/'
     restart: unless-stopped
     volumes:
-      - ./www/:/var/www/html/
+      - ./www/html/:/var/www/html/
 
   # Apache Service
   apache:
@@ -17,14 +17,16 @@ services:
     ports:
       - '80:80'
     volumes:
-      - ./www/:/var/www/html/
+      - ./www/html/:/var/www/html/
 
   # MariaDB Service
   mariadb:
-    image: mariadb:10.11
+    image: mariadb:11.2
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - mysqldata:/var/lib/mysql
 
