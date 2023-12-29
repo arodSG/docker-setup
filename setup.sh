@@ -1,5 +1,5 @@
 #!/bin/bash
-$DOCKER_DIST='raspbian'
+DOCKER_DIST='raspbian'
 
 # Add Docker's official GPG key:
 sudo apt-get update
@@ -10,7 +10,7 @@ sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
 # 64-bit
 if [ $(uname -m) == 'aarch64' ]; then
-    $DOCKER_DIST='debian'
+    DOCKER_DIST='debian'
 fi
 
 # Set up Docker's APT repository:
