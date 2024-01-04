@@ -9,3 +9,6 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql gd zip intl xml
 
 # Cleaning APT cache
 RUN apt clean
+
+RUN cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini && \
+    sed -i -e "s/^ *output_buffering.*/output_buffering = on/g" /usr/local/etc/php/php.ini

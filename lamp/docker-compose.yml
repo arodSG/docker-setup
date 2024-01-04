@@ -1,14 +1,12 @@
 version: '3.8'
 services:
 
-  # PHP Service
   php:
     build: './php_docker/'
     restart: unless-stopped
     volumes:
-      - ./www/html/:/var/www/html/
+      - ./www/:/var/www/
 
-  # Apache Service
   apache:
     build: './apache_docker/'
     restart: unless-stopped
@@ -17,9 +15,8 @@ services:
     ports:
       - '80:80'
     volumes:
-      - ./www/html/:/var/www/html/
+      - ./www/:/var/www/
 
-  # MariaDB Service
   mariadb:
     image: mariadb:11.2
     restart: unless-stopped
@@ -30,7 +27,6 @@ services:
     volumes:
       - mysqldata:/var/lib/mysql
 
-  # phpMyAdmin Service
   phpmyadmin:
     image: arm64v8/phpmyadmin:latest
     restart: unless-stopped
@@ -42,6 +38,5 @@ services:
     depends_on:
       - mariadb
 
-# Volumes
 volumes:
   mysqldata:
