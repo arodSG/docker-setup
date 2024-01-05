@@ -4,5 +4,6 @@ RUN apk update; apk upgrade;
 
 # Copy Apache virtual host file to proxy .php requests to PHP container
 COPY apache-vhost.conf /usr/local/apache2/conf/apache-vhost.conf
+COPY groupbored.conf /usr/local/apache2/conf/groupbored.conf
 RUN echo "Include /usr/local/apache2/conf/apache-vhost.conf" \
     >> /usr/local/apache2/conf/httpd.conf

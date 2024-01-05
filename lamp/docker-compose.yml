@@ -34,7 +34,7 @@ services:
       - 8080:80
     environment:
       PMA_HOST: mariadb
-      PMA_ABSOLUTE_URI: https://test.arodsg.com/phpmyadmin/
+      PMA_ABSOLUTE_URI: https://groupbored.arodsg.com/
     depends_on:
       - mariadb
 
